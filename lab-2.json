@@ -1,0 +1,224 @@
+{
+    "Queue": "arn:aws:mediaconvert:us-west-2:690154025901:queues/Default",
+    "UserMetadata": {},
+    "Role": "arn:aws:iam::690154025901:role/MediaConvertAccessRole",
+    "Settings": {
+      "TimecodeConfig": {
+        "Source": "ZEROBASED"
+      },
+      "OutputGroups": [
+        {
+          "Name": "CMAF",
+          "Outputs": [
+            {
+              "ContainerSettings": {
+                "Container": "CMFC"
+              },
+              "VideoDescription": {
+                "Width": 1920,
+                "Height": 1080,
+                "CodecSettings": {
+                  "Codec": "H_264",
+                  "H264Settings": {
+                    "MaxBitrate": 6000000,
+                    "RateControlMode": "QVBR",
+                    "QvbrSettings": {
+                      "QvbrQualityLevel": 9
+                    }
+                  }
+                }
+              },
+              "NameModifier": "_1080p"
+            },
+            {
+              "ContainerSettings": {
+                "Container": "CMFC"
+              },
+              "VideoDescription": {
+                "Width": 1280,
+                "Height": 720,
+                "CodecSettings": {
+                  "Codec": "H_264",
+                  "H264Settings": {
+                    "MaxBitrate": 2000000,
+                    "RateControlMode": "QVBR",
+                    "QvbrSettings": {
+                      "QvbrQualityLevel": 7
+                    }
+                  }
+                }
+              },
+              "NameModifier": "_720p"
+            },
+            {
+              "ContainerSettings": {
+                "Container": "CMFC"
+              },
+              "VideoDescription": {
+                "Width": 960,
+                "Height": 540,
+                "CodecSettings": {
+                  "Codec": "H_264",
+                  "H264Settings": {
+                    "MaxBitrate": 1000000,
+                    "RateControlMode": "QVBR",
+                    "QvbrSettings": {
+                      "QvbrQualityLevel": 7
+                    }
+                  }
+                }
+              },
+              "NameModifier": "_540p"
+            },
+            {
+              "ContainerSettings": {
+                "Container": "CMFC"
+              },
+              "VideoDescription": {
+                "Width": 640,
+                "Height": 360,
+                "CodecSettings": {
+                  "Codec": "H_264",
+                  "H264Settings": {
+                    "MaxBitrate": 700000,
+                    "RateControlMode": "QVBR",
+                    "QvbrSettings": {
+                      "QvbrQualityLevel": 7
+                    }
+                  }
+                }
+              },
+              "NameModifier": "_360p"
+            },
+            {
+              "ContainerSettings": {
+                "Container": "CMFC"
+              },
+              "AudioDescriptions": [
+                {
+                  "AudioSourceName": "Audio Selector 1",
+                  "CodecSettings": {
+                    "Codec": "AAC",
+                    "AacSettings": {
+                      "Bitrate": 96000,
+                      "CodingMode": "CODING_MODE_2_0",
+                      "SampleRate": 48000
+                    }
+                  },
+                  "StreamName": "English",
+                  "LanguageCodeControl": "USE_CONFIGURED",
+                  "LanguageCode": "ENG"
+                }
+              ],
+              "NameModifier": "_audio-eng"
+            },
+            {
+              "ContainerSettings": {
+                "Container": "CMFC"
+              },
+              "AudioDescriptions": [
+                {
+                  "AudioSourceName": "Audio Selector 2",
+                  "CodecSettings": {
+                    "Codec": "AAC",
+                    "AacSettings": {
+                      "Bitrate": 96000,
+                      "CodingMode": "CODING_MODE_2_0",
+                      "SampleRate": 48000
+                    }
+                  },
+                  "StreamName": "Espanol",
+                  "LanguageCode": "SPA"
+                }
+              ],
+              "NameModifier": "_audio-spa"
+            },
+            {
+              "ContainerSettings": {
+                "Container": "CMFC"
+              },
+              "NameModifier": "_captions-eng",
+              "CaptionDescriptions": [
+                {
+                  "CaptionSelectorName": "Captions Selector 1",
+                  "DestinationSettings": {
+                    "DestinationType": "WEBVTT",
+                    "WebvttDestinationSettings": {}
+                  },
+                  "LanguageCode": "ENG",
+                  "LanguageDescription": "English"
+                }
+              ]
+            },
+            {
+              "ContainerSettings": {
+                "Container": "CMFC"
+              },
+              "NameModifier": "_captions-spa",
+              "CaptionDescriptions": [
+                {
+                  "CaptionSelectorName": "Captions Selector 2",
+                  "DestinationSettings": {
+                    "DestinationType": "WEBVTT",
+                    "WebvttDestinationSettings": {}
+                  },
+                  "LanguageCode": "SPA",
+                  "LanguageDescription": "Espanol"
+                }
+              ]
+            }
+          ],
+          "OutputGroupSettings": {
+            "Type": "CMAF_GROUP_SETTINGS",
+            "CmafGroupSettings": {
+              "SegmentLength": 10,
+              "Destination": "s3://output-lff573/accessible/vanlife",
+              "FragmentLength": 2
+            }
+          }
+        }
+      ],
+      "Inputs": [
+        {
+          "AudioSelectors": {
+            "Audio Selector 1": {
+              "DefaultSelection": "DEFAULT",
+              "SelectorType": "LANGUAGE_CODE",
+              "LanguageCode": "ENG"
+            },
+            "Audio Selector 2": {
+              "SelectorType": "LANGUAGE_CODE",
+              "ExternalAudioFileInput": "s3://source-lfbd18/vanlife-audio-spa.mp3",
+              "LanguageCode": "SPA"
+            }
+          },
+          "VideoSelector": {},
+          "TimecodeSource": "ZEROBASED",
+          "CaptionSelectors": {
+            "Captions Selector 1": {
+              "SourceSettings": {
+                "SourceType": "SRT",
+                "FileSourceSettings": {
+                  "SourceFile": "s3://source-lfbd18/vanlife-captions-eng.srt"
+                }
+              }
+            },
+            "Captions Selector 2": {
+              "SourceSettings": {
+                "SourceType": "SRT",
+                "FileSourceSettings": {
+                  "SourceFile": "s3://source-lfbd18/vanlife-captions-spa.srt"
+                }
+              }
+            }
+          },
+          "FileInput": "s3://source-lfbd18/vanlife_1080p60_AVC_QVBR9_AAC_96k_eng.mp4"
+        }
+      ]
+    },
+    "AccelerationSettings": {
+      "Mode": "DISABLED"
+    },
+    "StatusUpdateInterval": "SECONDS_60",
+    "Priority": 0
+  }
