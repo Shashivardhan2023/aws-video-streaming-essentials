@@ -30,7 +30,7 @@
 		- Content Delivery Network(CDN): Origin and Edge servers. can use Amazon CloudFront
 		- transport data within and out of cloud
 
-![9e362d339c20d5aac013b61aa1457a93.png](:/a06f3fcd1b4648acbe1ca4b107458797)
+![AWS Services used in video workflows](./aws-in-video-workflows.png)
 
 ## Variables that affect design decisions
 - Level of expertise
