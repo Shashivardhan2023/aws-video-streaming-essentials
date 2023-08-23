@@ -58,4 +58,8 @@
 	- API Gateway for creating APIs
 	- ML services: Rekognition, Transcribe, Comprehend, Translate, Polly
 
-# 
+# Links for further practice
+
+- [AWS workshops](https://workshops.aws)
+- [AWS skillbuilder](https://skillbuilder.aws/)
+- [free AWS access](https://aws.amazon.com/free/)
